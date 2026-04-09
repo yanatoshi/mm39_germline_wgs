@@ -15,7 +15,7 @@ chrname=$(cat /mnt/scratch3/yanagiwasa/dry_yanagisawa/reference/hg38/split_chr/c
 
 for chr in $chrname; do
 singularity exec --nv -B /mnt:/mnt --userns ${bcftools_sif} \
- bcftools view -r chr${chr} ${germline_gatkdir}/${id}.germline_output.g.vcf.gz -Oz \
+ bcftools view -r ${chr} ${germline_gatkdir}/${id}.germline_output.g.vcf.gz -Oz \
          -o ${germline_gatkdir}/${id}.chr${chr}.germline_output.g.vcf.gz
 
 singularity exec --nv -B /mnt:/mnt --userns ${gatk_sif} \
