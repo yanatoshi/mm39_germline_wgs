@@ -47,11 +47,11 @@ singularity exec --nv -B /mnt:/mnt --userns ${gatk_sif} \
 singularity exec --nv -B /mnt:/mnt --userns ${vep_sif} \
 vep \
         -i ${workingdir}/${sample}/germline_gatk_dir/${sample}_chrmergedall.passfilterd.vcf.gz \
-        -o ${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_annotated.txt \
-        --stats_file ${workingdir}/${sample}/germline_gatk_dir/${sample}_variant_effect_output.txt_summary.html \
+        -o ${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_refseq_annotated.txt \
+        --stats_file ${workingdir}/${sample}/germline_gatk_dir/${sample}_variant_effect_output_refseq.txt_summary.html \
         --fasta ${ref_fasta} \
-        --dir_cache /mnt/scratch3/yanagiwasa/dry_yanagisawa/reference/mm39/vep/cache \
-        --dir_plugins /mnt/scratch3/yanagiwasa/dry_yanagisawa/reference/mm39/vep/plugins \
+        --dir_cache /mnt/scratch3/yanagiwasa/dry_yanagisawa/reference/mm39/vep_refseq/cache \
+        --dir_plugins /mnt/scratch3/yanagiwasa/dry_yanagisawa/reference/mm39/vep_refseq/plugins \
         --species mus_musculus \
         --assembly GRCm39 \
         --cache \
