@@ -97,4 +97,10 @@ singularity exec --nv -B /mnt:/mnt --userns ${gatk_sif} \
     gatk IndexFeatureFile \
         -I ${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_ensembl_annotated.vcf.gz
 
+echo -e "CHROM\tPOS\tID\tREF\tALT\tQUAL\tFILTER\tINFO\tCSQ\tFORMAT\t${sample}" > "${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_ensembl_annotated.tsv"
+singularity exec --nv -B /mnt:/mnt --userns ${bcftools_sif} \
+bcftools query \
+  -f '%CHROM\t%POS\t%ID\t%REF\t%ALT\t%QUAL\t%FILTER\t%INFO\t%INFO/CSQ\t%FORMAT\n' \
+  "${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_ensembl_annotated.vcf.gz" >> "${workingdir}/${sample}/germline_gatk_dir/${sample}_vep_ensembl_annotated.tsv"
+
 done
